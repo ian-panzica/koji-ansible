@@ -82,3 +82,20 @@ def ensure_logged_in(session):
         # Note: this can raise SystemExit if there is a problem, eg with
         # Kerberos:
         activate_session(session, session.opts)
+
+
+perm_cache = {}
+
+
+def get_perms(session):
+    global perm_cache
+    if not perm_cache:
+        perm_cache = dict([
+            (perm['name'], perm['id']) for perm in session.getAllPerms()
+        ])
+    return perm_cache
+
+
+def get_perm_id(session, name):
+    perms = get_perms(session)
+    return perms[name]
