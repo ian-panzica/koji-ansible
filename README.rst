@@ -243,6 +243,22 @@ and you should run the playbook like so::
    ansible-playbook koji.yml
 
 
+Generating a playbook from a live Koji instance
+-----------------------------------------------
+
+Do you have a Koji hub that has many tags, targets, and other settings that
+were crafted by hand over the years? You can use the
+``./utils/generate-playbook`` script to query your Koji hub and write an
+Ansible playbook that describes some or all of the tags. You can then store
+this YAML in Git. Other things beyond tags (like targets) are not yet
+supported.
+
+This ``generate-playbook`` utility's output may not be the most elegant way to
+manage your Koji tags. There will be lots of repetition, because it will not
+use any Ansible variables, etc. The purpose of this utility is simply to help
+you get up and running quickly with koji-ansible.
+
+
 TODO
 ----
 
